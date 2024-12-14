@@ -9,6 +9,7 @@ const RegisterPage = () => {
     username: '',
     password: '',
   });
+ 
   const [successMessage, setSuccessMessage] = useState('');  // Para el mensaje de éxito
   const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, formData);
+    
 
       // Almacenar el token en localStorage
       localStorage.setItem('token', response.data.token);

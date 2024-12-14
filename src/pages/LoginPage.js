@@ -1,5 +1,7 @@
+
 import React, { useContext, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Asegúrate de importar Link aquí
+import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';  // Importamos axios
 import { AppContext } from '../context/AppContext'; 
 import '../styles/LoginPage.css';
 
@@ -13,7 +15,7 @@ const LoginPage = () => {
   const [successMessage, setSuccessMessage] = useState('');  // Para el mensaje de éxito
   
   // Función para manejar el login
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
@@ -21,16 +23,28 @@ const LoginPage = () => {
       return;
     }
 
-    
-    const user = { username: email.split('@')[0] }; // Tomamos la parte antes del '@' como nombre de usuario
-    setUser(user);  // Actualizamos el contexto con el usuario
+    try {
+      // Hacer la solicitud POST a la API
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, { email, password });
 
-    setSuccessMessage(`¡Bienvenido ${user.username}!`);  // Establecemos el mensaje de éxito
-    setTimeout(() => {
-      setSuccessMessage('');  // Limpiamos el mensaje de éxito después de un tiempo
-    }, 3000);
+      // Si la respuesta es exitosa, almacenamos el token en el localStorage
+      const { token } = response.data;
+      localStorage.setItem('token', token);
 
-    navigate('/productos-privado');  // Redirigimos a la página de productos privados
+      // Decodificar el token para obtener el usuario
+      const user = { username: email.split('@')[0] }; // Tomamos la parte antes del '@' como nombre de usuario
+      setUser(user);  // Actualizamos el contexto con el usuario
+
+      setSuccessMessage(`¡Bienvenido ${user.username}!`);  // Establecemos el mensaje de éxito
+      setTimeout(() => {
+        setSuccessMessage('');  // Limpiamos el mensaje de éxito después de 3 segundos
+      }, 3000);
+
+      // Redirigir al usuario a la página privada después del login exitoso
+      navigate('/productos-privado');  
+    } catch (error) {
+      setError(error.response?.data?.error || 'Error al iniciar sesión');  // Mostrar el mensaje de error si lo hay
+    }
   };
 
   return (
@@ -102,3 +116,9 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+
+
+
+
+
