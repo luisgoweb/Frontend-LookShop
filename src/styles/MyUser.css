@@ -1,0 +1,103 @@
+.my-user-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 1200px;
+    background-color: #ffffff;
+    border: 1px solid #bfbfbf;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    margin-top: -180px;
+  }
+  
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 40%;
+  }
+  
+  .profile-picture {
+    width: 250px;
+    height: 250px;
+    background-color: #e3e3e3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #bfbfbf;
+    font-weight: bold;
+    border: 2px dashed #dcdcdc;
+  }
+  
+  .upload-photo-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #061835;
+    background-color: #ffffff;
+    border: 1px solid #bfbfbf;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .upload-photo-button:hover {
+    background-color: #f7f7f7;
+    transform: scale(1.05);
+  }
+  
+  .user-details-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+  }
+  
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .form-field label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #061835;
+  }
+  
+  .form-field input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #bfbfbf;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-field input:focus {
+    border-color: #20bce7;
+  }
+  
+  .save-button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #061835;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .save-button:hover {
+    background-color: #20bce7;
+    transform: scale(1.05);
+  }
+  
